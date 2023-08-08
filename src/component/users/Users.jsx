@@ -5,7 +5,7 @@ import axios from 'axios';
 import Logout from '../Sign/Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import UserConnected from './UserConnected';
-import { getAllUsers, selectAllUsers } from '../../app-redux/features/users/usersslice';
+import { getAllUsers, selectAllUsers } from '../../app-redux/features/users/usersSlice';
 const Users = React.memo(() => {
     // hooks util
     const dispatch = useDispatch();

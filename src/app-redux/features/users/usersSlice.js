@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice, createSelector } from "@reduxjs/toolkit"
-import userSlice from "../user/userSlice";
 import costumFetch from "../../../utiils/axios";
-
-
 
 
 const initialState = {
@@ -77,11 +74,9 @@ const usersSlice = createSlice({
 }
 )
 
+export default usersSlice.reducer
 
 export const selectAllUsers = (store) => {
     return store.users.users
 }
-export default usersSlice.reducer
-
-
 export { getAllUsers }  // function for dispatching 
