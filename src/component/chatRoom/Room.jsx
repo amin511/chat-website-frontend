@@ -10,7 +10,7 @@ import { addMessage } from '../../app-redux/features/messages/messageSlice'
 
 import { io } from 'socket.io-client';
 import costumFetch from '../../utiils/axios'
-import Users from '../users/users'
+import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
 
