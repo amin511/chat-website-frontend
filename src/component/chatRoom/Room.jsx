@@ -14,7 +14,7 @@ import Users from '../users/users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
 
-const ENDPOINT = 'http://localhost:3001';
+const ENDPOINT = 'https://chat-website-xxiq.onrender.com';
 const Room = () => {
     const { userRoomId } = useParams();
     const [userRoom, setUserRoom] = useState({});
@@ -69,7 +69,7 @@ const Room = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const { data } = await costumFetch.get(`http://localhost:3001/api/v1/users/${userRoomId}`);
+            const { data } = await costumFetch.get(`/users/${userRoomId}`);
             setUserRoom(data);
         }
         try {
@@ -191,7 +191,7 @@ const Room = () => {
                     {/* inputes  */}
 
                 </section>
-            </main >
+            </main>
         </>
     )
 }

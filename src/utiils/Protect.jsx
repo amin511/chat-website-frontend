@@ -15,7 +15,7 @@ const Protect = ({ children }) => {
     }
     console.log(children)
     return (
-        { children] }
+        { children }
     )
 }
 

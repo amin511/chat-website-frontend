@@ -24,7 +24,7 @@ const Users = React.memo(() => {
             <div className='max-w-max p-3 flex flex-col gap-1'>
                 {
                     users.map((user) => {
-                        return (<User {...user} />)
+                        return (<User key={user._id} {...user} />)
                     })
                 }
             </div>

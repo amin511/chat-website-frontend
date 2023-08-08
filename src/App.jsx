@@ -14,12 +14,10 @@ import Home from './component/Home'
 
 function App() {
   const user = useSelector((store) => store.user.user)
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}>
-
         </Route>
         <Route path="/auth"  >
           <Route path="signin" element={<SignIn />} />
@@ -34,9 +32,8 @@ function App() {
             <Route path="*" element={<div>Route not found</div>} />
           </Route>
         }
-      </Routes >
-
-    </BrowserRouter >
+      </Routes>
+    </BrowserRouter>
 
   )
 }
