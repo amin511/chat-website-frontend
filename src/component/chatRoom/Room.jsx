@@ -14,7 +14,7 @@ import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
 
-const ENDPOINT = 'https://chat-website-xxiq.onrender.com';
+const ENDPOINT = 'https://chat-website-xxiq.onrender.com/';
 const Room = () => {
     const { userRoomId } = useParams();
     const [userRoom, setUserRoom] = useState({});
