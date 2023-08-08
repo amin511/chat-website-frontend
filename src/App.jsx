@@ -19,17 +19,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}>
         </Route>
-        <Route path="/auth"  >
+        <Route path="/auth">
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
-
-        <Route>
-          <Route path="/Room/:userRoomId" element={<Room />} />
-          <Route path='/users' element={<Users />} />
-          <Route path="*" element={<div>Route not found</div>} />
-        </Route>
-
+        <Route path="/Room/:userRoomId" element={<Room />} />
+        <Route path='/users' element={<Users />} />
+        <Route path="*" element={<div>Route not found</div>} />
       </Routes>
     </BrowserRouter>
 
