@@ -14,7 +14,8 @@ import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
 
-const ENDPOINT = 'https://chat-website-xxiq.onrender.com/';
+// const ENDPOINT = 'https://chat-website-xxiq.onrender.com/';
+const ENDPOINT = "http://localhost:3001";
 const Room = () => {
     const { userRoomId } = useParams();
     const [userRoom, setUserRoom] = useState({});
@@ -61,10 +62,9 @@ const Room = () => {
             socket.emit('joinRoom', roomName);
             return () => {
                 socket.emit('leaveRoom', roomName);
-                socket.disconnect();
             };
         }
-    }, [socket]); // Empty dependency array ensures this runs only once
+    }, [socket, userRoomId]); // Empty dependency array ensures this runs only once
 
 
     useEffect(() => {
