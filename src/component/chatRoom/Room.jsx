@@ -13,19 +13,17 @@ import costumFetch from '../../utiils/axios'
 import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
+import Div100vh from 'react-div-100vh'
 
 const ENDPOINT = 'https://chat-website-xxiq.onrender.com';
 // const ENDPOINT = "http://localhost:3001";
 const Room = () => {
     const { userRoomId } = useParams();
-    const [userRoom, setUserRoom] = useState({});
+    const [userRoom, setUserRoom] = useState("");
     const sendMessageRef = useRef("");
     const containerMessagesRef = useRef("");
-
     const dispatch = useDispatch();
-
     const userId = useSelector(store => store.user.user.userId);    // user conected id
-
     // const messages = useSelector(store => store.message.messages)
     const messages = useSelector((store) => store.message.messages);
 
@@ -97,7 +95,6 @@ const Room = () => {
     const addMess = async () => {
         const { value } = sendMessageRef.current;
         sendMessageRef.current.value = "";
-
         try {
             const actionResult = await dispatch(createMessage({ userIdRoom: userRoomId, content: value }));
             console.log(actionResult)
@@ -106,7 +103,6 @@ const Room = () => {
                 console.log("Error during message creation:", error);
                 // Handle the error, such as showing an error message to the user
             } else {
-
                 // Message created successfully
                 if (socket) {
                     socket.emit("message", { roomName, payload: actionResult.payload });
@@ -151,13 +147,21 @@ const Room = () => {
                 <div className='hidden lg:block'>
                     <Users />
                 </div>
-                <section className=' grow flex flex-col relative h-[100vh]  bg-slate-100'>
-
+                <Div100vh className=' grow flex flex-col relative  bg-slate-100'>
                     {/* userRoom information */}
-                    <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
-                        <img className='w-10 h-10 rounded-full object-cover' src={userRoom.userImage || ""} />
-                        <h1 className='font-semibold'>{userRoom.name}</h1>
-                    </header>
+                    {userRoom ?
+                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                            <img className='w-10 h-10 rounded-full object-cover' src={userRoom.userImage || ""} />
+                            <h1 sclassName='font-semibold'>{userRoom.name}</h1>
+                        </header>
+                        :
+                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                            <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
+                            <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                        </header>
+                    }
+
+
                     {/* userRoom information */}
 
                     {/* messages output*/}
@@ -187,11 +191,11 @@ const Room = () => {
                             onClick={addMess}>send</button>
                         {/* <input type='file' onChange={handleFileUpload} /> */}
                     </section>
-
                     {/* inputes  */}
+                </Div100vh>
 
-                </section>
-            </main>
+
+            </main >
         </>
     )
 }
