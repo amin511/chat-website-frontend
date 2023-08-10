@@ -170,7 +170,7 @@ const Room = () => {
 
                     {/* userRoom information */}
                     {userRoom ?
-                        <header className='fixed w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                        <header className='fixed bg-white z-50 w-[100%] gap-3  shadow-md  p-2 flex items-center'>
                             <img className='w-10 h-10 rounded-full object-cover' src={userRoom.userImage || ""} />
                             <h1 sclassName='font-semibold'>{userRoom.name}</h1>
                         </header>
