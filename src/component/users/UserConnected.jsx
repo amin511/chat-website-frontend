@@ -5,7 +5,7 @@ const UserConnected = () => {
     const user = useSelector((store) => store.user.user)
 
     return (
-        <div className='items-center text-white py-2 px-4 gap-2 max-w-max flex  bg-blue-400 rounded-2xl'>
+        <div className='mx-auto bg-slate-800 mt-3 p-3 rounded-lg max-w-lg  shadow-slate-600  text-white  flex items-center'>
             <img className='w-10 h-10 object-cover rounded-full' src={user.userImage} />
             <h1>{user.name}</h1>
         </div>

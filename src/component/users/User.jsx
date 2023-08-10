@@ -6,8 +6,9 @@ const User = ({ name, _id, userImage }) => {
     return (
 
         <Link to={`/room/${_id}`}>
-            <div className='flex hover:bg-slate-200 transition duration-200 rounded-lg p-2 px-3 items-center gap-2'>
-                <img className='w-10 h-10 rounded-full object-cover' src={userImage || ""} />
+            <div className='flex items-center hover:bg-slate-200 transition duration-200 rounded-lg w-[100%] gap-3  shadow-md  p-2  '>
+                <div className='bg-slate-300 h-10 w-10 rounded-full animate-pulses '></div>
+                {/* <img className='w-10 h-10 rounded-full object-cover' src={userImage || ""} /> */}
                 <h1 className='text-black '>{name}</h1>
             </div>
         </Link>

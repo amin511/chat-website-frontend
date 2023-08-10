@@ -19,11 +19,20 @@ const Users = React.memo(() => {
         dispatch(getAllUsers());
     }, [])
     return (
-        <section className='h-[100vh] bg-white overflow-y-scroll '>
+
+        <section className='h-[100vh] overflow-scroll' >
             <div className='w-[80%] mx-auto'><UserConnected /></div>
             {
                 isLoading ?
-                    <div className='max-w-max p-3 flex flex-col gap-1'>
+                    <div className=' p-3 flex flex-col gap-1 w-full max-w-lg mx-auto '>
+                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                            <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
+                            <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                        </header>
+                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                            <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
+                            <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                        </header>
                         <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
                             <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
                             <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
@@ -46,7 +55,7 @@ const Users = React.memo(() => {
                         </header>
                     </div>
                     :
-                    <div className='max-w-max p-3 flex flex-col gap-1'>
+                    <div className='p-3 flex flex-col gap-1 w-full max-w-lg mx-auto  '>
                         {
                             users.map((user) => {
                                 return (<User key={user._id} {...user} />)
@@ -54,8 +63,7 @@ const Users = React.memo(() => {
                         }
                     </div>
             }
-
-            <footer className='bottom-0 absolute'>
+            <footer>
                 <Logout />
             </footer>
         </section>

@@ -14,18 +14,20 @@ import Home from './component/Home'
 
 function App() {
   const user = useSelector((store) => store.user.user)
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />}>
+        <Route path='/'>
+          <Route index element={<Home />} />
+          <Route path="auth/">
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+          </Route>
+          <Route path="Room/:userRoomId/" element={<Room />} />
+          <Route path='users/' element={<Users />} />
+          <Route path="*" element={<div>Route not found</div>} />
         </Route>
-        <Route path="/auth">
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-        </Route>
-        <Route path="/Room/:userRoomId" element={<Room />} />
-        <Route path='/users' element={<Users />} />
-        <Route path="*" element={<div>Route not found</div>} />
       </Routes>
     </BrowserRouter>
 

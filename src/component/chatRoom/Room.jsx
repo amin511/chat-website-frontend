@@ -13,7 +13,12 @@ import costumFetch from '../../utiils/axios'
 import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
 import { convertToBase64 } from '../../utiils/convertTobase64'
+
 import Div100vh from 'react-div-100vh'
+import Split from 'react-split'
+import { Send } from '@mui/icons-material'
+
+
 
 const ENDPOINT = 'https://chat-website-xxiq.onrender.com';
 // const ENDPOINT = "http://localhost:3001";
@@ -23,9 +28,13 @@ const Room = () => {
     const sendMessageRef = useRef("");
     const containerMessagesRef = useRef("");
     const dispatch = useDispatch();
-    const userId = useSelector(store => store.user.user.userId);    // user conected id
-    // const messages = useSelector(store => store.message.messages)
-    const messages = useSelector((store) => store.message.messages);
+    const userId = useSelector(store => store.user.user.userId);// user conected id
+
+    // messages selector 
+    const { messages, isLoading: isLoadingMessages } = useSelector((store) => store.message);
+
+
+
 
     // room name
     const sortedIds = [userRoomId, userId].sort();
@@ -64,19 +73,19 @@ const Room = () => {
         }
     }, [socket, userRoomId]); // Empty dependency array ensures this runs only once
 
-
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchUserRoom = async () => {
             const { data } = await costumFetch.get(`/users/${userRoomId}`);
             setUserRoom(data);
         }
         try {
-            fetchUsers();
-
+            fetchUserRoom();
         } catch (error) {
             console.log(error)
         }
-
+        return () => {
+            setUserRoom("")
+        }
 
     }, [userRoomId])
 
@@ -140,17 +149,28 @@ const Room = () => {
         }
 
     }
-    console.log(userRoom)
+
     return (
         <>
-            <main className='flex gap-2 '>
-                <div className='hidden lg:block'>
+            <Split sizes={[25, 75]}
+
+                expandToMin={false}
+                gutterSize={10}
+                gutterAlign="center"
+                snapOffset={30}
+                dragInterval={1}
+                direction="horizontal"
+                cursor="ew-resize"
+                className='flex'>
+                <div className='lg:block hidden '>
                     <Users />
                 </div>
-                <Div100vh className=' grow flex flex-col relative  bg-slate-100'>
+
+                <Div100vh className='grow flex flex-col relative  bg-slate-100 '>
+
                     {/* userRoom information */}
                     {userRoom ?
-                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                        <header className='fixed w-[100%] gap-3  shadow-md  p-2 flex items-center'>
                             <img className='w-10 h-10 rounded-full object-cover' src={userRoom.userImage || ""} />
                             <h1 sclassName='font-semibold'>{userRoom.name}</h1>
                         </header>
@@ -165,16 +185,24 @@ const Room = () => {
                     {/* userRoom information */}
 
                     {/* messages output*/}
-                    <main ref={containerMessagesRef} className='scroll-smooth px-2  flex-grow  scroll-bt h-[100px] overflow-x-hidden overflow-y-scroll '>
-                        <div className='mt-10 space-y-2'>
-                            {messages.map(message => <Message key={message._id} {...message} />)}
-                        </div>
-                        <img src={postImage.myfile} />
-                    </main>
+                    {
+                        isLoadingMessages ?
+                            <section className='grow flex justify-center mt-10'>
+                                <div className='h-10 w-10 rounded-full bg-slate-400 animate-bounce'></div>
+                            </section>
+                            :
+                            <main ref={containerMessagesRef} className='scroll-smooth px-2  flex-grow  scroll-bt h-[100px] overflow-x-hidden overflow-y-scroll '>
+                                <div className='w-[100%] gap-3  p-2 flex flex-col items-center'>
+                                    {messages.map(message => <Message key={message._id} {...message} />)}
+                                </div>
+                                <img src={postImage.myfile} />
+                            </main>
+                    }
+
                     {/* messages output*/}
 
                     {/* inputes  */}
-                    <section className='bg-white flex items-center justify-around p-2 w-full'>
+                    <section className='bg-white flex items-center gap-2 p-2 w-full'>
                         {/* <TextField
                             ref={sendMessageRef}
                             multiline
@@ -186,16 +214,16 @@ const Room = () => {
                             placeholder='Aa'
                             name="message"
                             ref={sendMessageRef}
-                            className='.textarea block resize-none bg-slate-200 w-[80%] p-2 rounded-xl  outline-0' />
-                        <button className='bg-blue-500 max-h-max text-white rounded-sm h-fit p-1'
-                            onClick={addMess}>send</button>
+                            className='.textarea grow block resize-none bg-slate-200 w-[80%] p-2 rounded-xl  outline-0' />
+                        <button className='text-blue-500'
+                            onClick={addMess}>
+                            <Send />
+                        </button>
                         {/* <input type='file' onChange={handleFileUpload} /> */}
                     </section>
                     {/* inputes  */}
                 </Div100vh>
-
-
-            </main >
+            </Split >
         </>
     )
 }
