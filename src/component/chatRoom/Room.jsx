@@ -31,7 +31,7 @@ const Room = () => {
     const userId = useSelector(store => store.user.user.userId);// user conected id
 
     // messages selector 
-    const { messages, isLoading: isLoadingMessages } = useSelector((store) => store.message);
+    const { messages, isLoadingMessages } = useSelector((store) => store.message);
 
 
 

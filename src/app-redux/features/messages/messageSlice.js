@@ -3,13 +3,13 @@ import { addUsertoLocalStorage, getUserFromLocalStorage } from "../../../utiils/
 import costumFetch from "../../../utiils/axios"
 
 const initialState = {
-    isLoading: false,
+    isLoadingMessages: false,
+    isLoadingmesseageCreated: false,
     messages: []
 }
 
 const createMessage = createAsyncThunk('message/createMessage',
     async (dataSend, thunkApi) => {
-
         try {
             const { data } = await costumFetch.post('/messages', dataSend);
             return data.message
@@ -45,20 +45,20 @@ const messageSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(createMessage.pending, (state) => {
-                state.isLoading = true;
+                state.isLoadingmesseageCreated = true;
             })
             .addCase(createMessage.fulfilled, (state, { payload }) => {
-                state.isLoading = false
+                state.isLoadingmesseageCreated = false
             })
             .addCase(createMessage.rejected, (state, { payload }) => {
-                state.isLoading = false
+                state.isLoadingmesseageCreated = false
             })
 
             .addCase(getMessages.pending, (state) => {
-                state.isLoading = true;
+                state.isLoadingMessages = true;
             })
             .addCase(getMessages.fulfilled, (state, { payload }) => {
-                state.isLoading = false
+                state.isLoadingMessages = false
                 state.messages = payload
             })
     }
