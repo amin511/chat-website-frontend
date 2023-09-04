@@ -5,7 +5,7 @@ import React from 'react'
 import FiledCustom from '../../FiledCustom'
 import { ArrowBack } from '@mui/icons-material'
 import SignUp from '../SignUp'
-import Logo from "../../../../public/images/logo.svg"
+import Logo from "../../../../public/images/Logo.svg"
 import { useDispatch, useSelector } from 'react-redux';
 import { addInfoPage1 } from '../../../app-redux/features/user/userSlice'
 const Page1 = (props) => {

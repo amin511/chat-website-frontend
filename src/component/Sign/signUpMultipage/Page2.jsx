@@ -7,7 +7,7 @@ import { ArrowBack } from '@mui/icons-material'
 import SignUp from '../SignUp'
 
 import uploadPicture from "../../../../public/images/UserUploadPics.svg"
-import Logo from "../../../../public/images/logo.svg"
+import Logo from "../../../../public/images/Logo.svg"
 import { useDispatch } from 'react-redux'
 import { addInfoPage2 } from '../../../app-redux/features/user/userSlice'
 const Page2 = ({ setStepsSignUp }) => {
