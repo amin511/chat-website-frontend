@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addUsertoLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage } from "../../../utiils/localStorage"
-import costumFetch from "../../../utiils/axios"
+import { addUsertoLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage } from "../../../utils/localStorage"
+import costumFetch from "../../../utils/axios"
 import { createSelector } from "@reduxjs/toolkit"
 const initialState = {
     isLoading: false,
@@ -11,6 +11,7 @@ const initialState = {
 const register = createAsyncThunk('user/register',
     async (user, thunkApi) => {
         try {
+            console.log(user)
             const { data } = await costumFetch.post('/auth/register', user);
             return data.user
         }
@@ -38,6 +39,13 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
+        addInfoPage1: (state, { payload }) => {
+            state.user = payload
+        },
+        addInfoPage2: (state, { payload }) => {
+            const { userImage, password } = payload;
+            state.user = { ...state.user, userImage, password }
+        },
         logOut: (state) => {
             state.user = null
             removeUserFromLocalStorage();
@@ -89,5 +97,5 @@ export {
 }
 
 export { register, login };
-export const { logOut } = userSlice.actions
+export const { logOut, addInfoPage1, addInfoPage2 } = userSlice.actions
 export default userSlice.reducer

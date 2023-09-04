@@ -1,4 +1,78 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Any custom styles you add to the base,
+components,
+or utilities layers will only be included in your compiled CSS if those styles are actually used in your HTML. */
+@font-face {
+    font-family: "AnekLatin";
+    src: url("./assets/fonts/AnekLatin-Thin.ttf");
+}
+@font-face {
+    font-family: "Georgia";
+    src: url("./assets/fonts/Georama-Bold.ttf");
+}
+@layer base{
+ 
+}
+@layer components{
+    .btn-primary{
+        @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+    }
+    .btn-submit{
+            @apply bg-primary-500 rounded-xl w-[150px] h-[50px] px-6  text-[18px] font-Georgia font-[200] mx-auto text-primary-100 border-2 border-Secondary-500
+
+    }
+    .header-1{
+        @apply text-4xl font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto
+    }
+    }
+
+
+@layer utilities{
+    /* for adding a own costum calsses of css pure */
+/* This can be useful when there’s a CSS feature you’d like to use in your project that Tailwind doesn’t include utilities for out of the box. */
+.gradient-100{
+background: linear-gradient(270deg, #FDBBD9 0%, #C2B4E2 100%)
+}
+.gradient-300{
+    background: linear-gradient(284.04deg, #C2B4E2 0.11%, #F72585 100.11%)
+}
+.gradient-500{
+background: -webkit-linear-gradient(104.04deg, #F72585 -0.11%, #3A0CA3 99.89%)
+}
+.gradient-700{
+background: linear-gradient(75.96deg, #3A0CA3 0.11%, #FDBBD9 100.11%),
+        linear-gradient(0deg, rgba(58, 12, 163, 0.03), rgba(58, 12, 163, 0.03)),
+        linear-gradient(0deg, #AAAAAA, #AAAAAA);
+}
+body{
+background: linear-gradient(0deg, rgba(58, 12, 163, 0.05) 0%, rgba(58, 12, 163, 0.05) 100%)
+    
+}
+body:is(.dark ) {
+background: var(--background-dark, linear-gradient(0deg, rgba(58, 12, 163, 0.05) 0%, rgba(58, 12, 163, 0.05) 100%), #1C1B1F);
+}
+
+input{
+    @apply bg-inherit 
+}
+
+.userName{
+    
+background: var(--grediant-700, linear-gradient(45deg, #3A0CA3 0%, #FDBBD9 100%));
+text-align: center;
+    font-family: Georama;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    /* 150% */
+    background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+}

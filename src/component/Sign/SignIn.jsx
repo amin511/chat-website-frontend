@@ -1,38 +1,16 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../app-redux/features/user/userSlice';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as yup from "yup"
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
-
+// import images
+import HomeIlustraion from "../../../public/images/HomeIlustation.svg"
+import Logo from "../../../public/images/Logo.svg"
+import FiledCustom from '../FiledCustom';
 
 export default function SignIn() {
     const { user, errorMsg, isLoading } = useSelector((store) => store.user)
@@ -45,85 +23,69 @@ export default function SignIn() {
             }, 0);
         }
     });
-    if (isLoading) {
-        return (<div className='w-10 h-10 bg-blue-600 mx-auto mt-10 animate-bounce'>
 
-        </div>)
+    if (isLoading) {
+        return (
+            <div className='w-10 h-10 bg-blue-600 mx-auto mt-10 animate-bounce'>
+            </div>
+        )
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email = data.get('email')
-        const password = data.get('password')
-        dispatch(login({ email, password }))
+        dispatch(login({}))
     };
 
+    const signInValidationSchema = yup.object({
+        email: yup.string().email("Invalid email").required('Email is required'),
+        password: yup.string().required('Password is required').min(6, 'Must be 7 characters or more')
+    })
+
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
-                        <Typography component="h1" variant="h5" color={"red"}>
-                            {errorMsg}
-                        </Typography>
-                        <Grid container>
-                            <Grid item>
-                                <Link href="/auth/signup" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
-            </Container>
-        </ThemeProvider>
-    );
+        <main className="flex  flex-col gap-7 max-w-lg w-[80%] mx-auto items-center dark:gradient-500">
+            <img src={Logo} />
+            <h1 className='text-4xl font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto '>
+                Start Chat With Friends
+            </h1>
+            <img src={HomeIlustraion} className='w-[300px] ' />
+
+            <Formik
+                initialValues={{ email: "", password: "" }}
+                onSubmit={(values) => {
+                    alert(JSON.stringify(values))
+                }}
+                validationSchema={signInValidationSchema}
+            >
+
+
+                {
+                    (props) =>
+                        <Form
+                            className="flex flex-col gap-4 w-[70%] mx-auto" onSubmit={props.handleSubmit}>
+
+                            <FiledCustom
+                                name="email"
+                                placeHolder="Your address email"
+                                labelText="Email Address"
+                            />
+
+                            <FiledCustom
+                                name="password"
+                                placeholder="Your password"
+                                labelText="Your password" />
+
+                            <button type='submit' disabled={props.isSubmitting}>
+                                Submit
+                            </button>
+                            <p>Don't Have an Account ?   <Link to={"/auth/signup"}><span className='text-Secondary-900'>Sign Up</span></Link> </p>
+
+                        </Form>
+
+                }
+            </Formik>
+
+        </main>
+    )
+
+
 }

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addUsertoLocalStorage, getUserFromLocalStorage } from "../../../utiils/localStorage"
-import costumFetch from "../../../utiils/axios"
+import { addUsertoLocalStorage, getUserFromLocalStorage } from "../../../utils/localStorage"
+import costumFetch from "../../../utils/axios"
 
 const initialState = {
     isLoadingMessages: false,

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, createSelector } from "@reduxjs/toolkit"
-import costumFetch from "../../../utiils/axios";
+import costumFetch from "../../../utils/axios";
 
 
 const initialState = {

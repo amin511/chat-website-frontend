@@ -9,19 +9,18 @@ import { messageCountSelector } from '../../app-redux/features/user/userSlice'
 import { addMessage } from '../../app-redux/features/messages/messageSlice'
 
 import { io } from 'socket.io-client';
-import costumFetch from '../../utiils/axios'
+import costumFetch from '../../utils/axios'
 import Users from '../users/Users'
 import { TextField, TextareaAutosize } from '@mui/material'
-import { convertToBase64 } from '../../utiils/convertTobase64'
+import { convertToBase64 } from '../../utils/convertTobase64'
 
 import Div100vh from 'react-div-100vh'
 import Split from 'react-split'
 import { Send } from '@mui/icons-material'
 
+import { ENDPOINTS } from '../../utils/axios'
 
 
-const ENDPOINT = 'https://chat-website-xxiq.onrender.com';
-// const ENDPOINT = "http://localhost:3001";
 const Room = () => {
     const { userRoomId } = useParams();
     const [userRoom, setUserRoom] = useState("");
@@ -49,7 +48,7 @@ const Room = () => {
     // connected to socket
     useEffect(() => {
         // Create the socket connection only once when the component mounts
-        const newSocket = io.connect(ENDPOINT, {
+        const newSocket = io.connect(ENDPOINTS, {
             // Add any necessary options here
         });
 
@@ -170,8 +169,8 @@ const Room = () => {
 
                     {/* userRoom information */}
                     {userRoom ?
-                        <header className='fixed bg-white z-50 w-[100%] gap-3  shadow-md  p-2 flex items-center'>
-                            <img className='w-10 h-10 rounded-full object-cover' src={userRoom.userImage || ""} />
+                        <header className=' bg-white z-50 w-[100%] gap-3  shadow-md  p-2 flex items-center'>
+                            <img className='w-10 h-10 rounded-full object-cover' src={`${ENDPOINTS}/${userRoom.userImage}`} />
                             <h1 sclassName='font-semibold'>{userRoom.name}</h1>
                         </header>
                         :
