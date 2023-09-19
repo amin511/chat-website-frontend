@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from "../../public/images/logo.svg"
 import { LogoIcon } from '../IconsSvg'
 const Header = ({ title }) => {
     return (
