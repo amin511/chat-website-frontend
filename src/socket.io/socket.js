@@ -1,5 +1,6 @@
 import { io } from "socket.io-client"
+import { ENDPOINTS } from "../utils/axios";
 
-const URL = 'http://localhost:5000/';
+const URL = ENDPOINTS;
 
 export const socket = io(URL);

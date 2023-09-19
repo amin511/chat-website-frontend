@@ -6,7 +6,10 @@ const initialState = {
     isLoading: false,
     users: [],
     errorMsg: "",
-    userSearch: []
+    usersSearch: [
+
+    ],
+    usersOnline: [],
 }
 
 
@@ -37,7 +40,14 @@ const usersSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-
+        searchUsers: (state, { payload }) => {
+            state.usersSearch = state.users.filter(user => user.name.startsWith(payload))
+        },
+        updateUsersOnline: (state, { payload }) => {
+            console.log(payload, "usersONline at user slice")
+            state.usersOnline = payload
+            console.log(state.usersOnline, "stae.usersONlie")
+        }
     },
     extraReducers: (builder) => {
         builder.
@@ -46,8 +56,9 @@ const usersSlice = createSlice({
             })
             .addCase(getAllUsers.fulfilled, (state, { payload }) => {
                 console.log("payload", payload)
-                state.users = payload
-                state.isLoading = false
+                state.users = payload;
+                state.usersSearch = payload;
+                state.isLoading = false;
             })
             .addCase(getAllUsers.rejected, (state, { payload }) => {
                 state.isLoading = false
@@ -79,4 +90,6 @@ export default usersSlice.reducer
 export const selectAllUsers = (store) => {
     return store.users.users
 }
+
+export const { searchUsers, updateUsersOnline } = usersSlice.actions;
 export { getAllUsers }  // function for dispatching 

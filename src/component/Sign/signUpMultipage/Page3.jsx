@@ -4,37 +4,40 @@ import { Form } from 'react-router-dom'
 import FiledCustom from '../../FiledCustom'
 import { Link } from 'react-router-dom'
 import Logo from "../../../../public/images/Logo.svg"
-import ImageUser from "../../../../public/images/User pic.svg"
+import userImage from "../../../../public/images/User pic.svg"
 import { ArrowBack } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../../../app-redux/features/user/userSlice'
+import Header from '../../Header'
 const Page3 = (props) => {
     const dispatch = useDispatch()
-    const user = useSelector((store) => store.user.user)
-
+    const { userInformation } = useSelector((store) => store.user)
+    console.log(props.userImage, "userImage")
     const handleSubmit = async (event) => {
+
         const data = new FormData();
-        data.append('userImage', user.userImage);
-        data.append('email', user.email);
-        data.append('password', user.password);
-        data.append('name', user.name);
+        data.append('userImage', props.userImage);
+        data.append('email', userInformation.email);
+        data.append('password', userInformation.password);
+        data.append('name', userInformation.name);
 
         try {
             await dispatch(register(data));
         }
         catch (error) {
-            console.log(error)
+            console.error(error, "console.error();")
         }
     }
     return (
-        <main className='flex flex-col max-w-lg w-[80%] mx-auto gap-10'>
-            <div className='flex items-center'>
-                <ArrowBack onClick={() => props.setStepsSignUp((prev) => prev - 1)} />
-                <img className='mx-auto' src={Logo} />
-            </div>
-            <h1 className='text-4xl font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto '>Here we go !</h1>
-            <img src={ImageUser} className='mx-auto' />
-            <h2 className='userName font-bold text-4xl mx-auto' >User Name</h2>
+        <main className='mt-10 flex flex-col max-w-lg w-[80%] mx-auto gap-10'>
+            <header className='flex'>
+                <ArrowBack className='' onClick={() => props.setStepsSignUp((prev) => prev - 1)} />
+                <div className='mx-auto'>
+                    <Header title={"create Account"} />
+                </div>
+            </header>
+            <img className=" mx-auto w-40 h-40 object-cover rounded-full border-Secondary-700 border border-4 " src={userInformation.userImage ? userInformation.userImage : userImage} />
+            <h2 className='userInformationName font-bold text-4xl mx-auto' >{userInformation.name}</h2>
             <button className='btn-submit w-[200px] rounded-full' onClick={handleSubmit}>Create Account</button>
         </main>
     )

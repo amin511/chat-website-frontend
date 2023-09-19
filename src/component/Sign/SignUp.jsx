@@ -23,6 +23,8 @@ import { register } from '../../app-redux/features/user/userSlice';
 import { Input } from '@mui/material';
 import { convertToBase64 } from '../../utils/convertTobase64';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 import Page1 from './signUpMultipage/Page1';
 import Page2 from './signUpMultipage/Page2';
 import Page3 from './signUpMultipage/Page3';
@@ -38,7 +40,13 @@ export default function SignUp() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const notify = () => {
+        return (toast('sign up '))
+
+    }
+
     React.useEffect(() => {
+
         if (user) {
             const { token } = user
             if (token) {
@@ -48,7 +56,8 @@ export default function SignUp() {
             }
         }
     });
-
+    const [userImage, setUserImage] = useState('');
+    console.log(userImage, "userImage");
     const handleSubmit = async (event) => {
         try {
             dispatch(register(data));
@@ -66,12 +75,16 @@ export default function SignUp() {
 
     switch (stepsSingUp) {
         case 2:
-            return (<Page2 setStepsSignUp={setStepsSignUp} />)
+            return (<Page2 userImage={userImage} setUserImage={setUserImage} setStepsSignUp={setStepsSignUp} />)
 
         case 3:
-            return (<Page3 setStepsSignUp={setStepsSignUp} />)
+            return (<Page3 userImage={userImage} setStepsSignUp={setStepsSignUp} />)
         default:
-            return (<Page1 setStepsSignUp={setStepsSignUp} />)
+            return (
+                <>
+                    <Page1 setStepsSignUp={setStepsSignUp} />
+                </>
+            )
 
     }
 

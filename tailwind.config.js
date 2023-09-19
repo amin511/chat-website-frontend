@@ -14,8 +14,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Georgia: ['Georgia'],
-        AnekLatin: ["AnekLatin"]
+        Georgia: ['Georama'],
+        AnekLatin: ['Anek Latin', 'sans-serif']
       },
       colors: {
         primary: {

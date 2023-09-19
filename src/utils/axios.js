@@ -1,8 +1,9 @@
 import axios from "axios";
 import { getUserFromLocalStorage } from "./localStorage";
 
+// export const ENDPOINTS = 'https://chat-website-xxiq.onrender.com'
+// export const ENDPOINTS = "http://localhost:3001"
 export const ENDPOINTS = 'https://chat-website-xxiq.onrender.com'
-
 
 const costumFetch = axios.create({
     baseURL: `${ENDPOINTS}/api/v1`

@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import HomeIlustraion from "../../../public/images/HomeIlustation.svg"
 import Logo from "../../../public/images/Logo.svg"
 import FiledCustom from '../FiledCustom';
+import Header from '../Header';
 
 export default function SignIn() {
     const { user, errorMsg, isLoading } = useSelector((store) => store.user)
@@ -42,42 +43,39 @@ export default function SignIn() {
     })
 
     return (
-        <main className="flex  flex-col gap-7 max-w-lg w-[80%] mx-auto items-center dark:gradient-500">
-            <img src={Logo} />
-            <h1 className='text-4xl font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto '>
-                Start Chat With Friends
-            </h1>
-            <img src={HomeIlustraion} className='w-[300px] ' />
-
+        <main className=" mt-10 flex flex-col gap-10 max-w-lg w-[80%] mx-auto items-center dark:gradient-500">
+            <Header title={"Start chat with your freinds"} />
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
-                    alert(JSON.stringify(values))
+                    dispatch(login(values))
                 }}
                 validationSchema={signInValidationSchema}
             >
-
-
                 {
                     (props) =>
                         <Form
-                            className="flex flex-col gap-4 w-[70%] mx-auto" onSubmit={props.handleSubmit}>
+                            className="flex flex-col gap-10 w-[70%] mx-auto" >
 
-                            <FiledCustom
-                                name="email"
-                                placeHolder="Your address email"
-                                labelText="Email Address"
-                            />
+                            <section className='space-y-6'>
+                                <FiledCustom
+                                    name="email"
+                                    placeHolder="Your address email"
+                                    labelText="Email Address"
+                                />
 
-                            <FiledCustom
-                                name="password"
-                                placeholder="Your password"
-                                labelText="Your password" />
+                                <FiledCustom
+                                    name="password"
+                                    placeholder="Your password"
+                                    labelText="Your password" />
+                            </section>
 
-                            <button type='submit' disabled={props.isSubmitting}>
-                                Submit
+
+                            <button className='btn-submit' type='submit' disabled={props.isSubmitting}>
+                                Log in
                             </button>
-                            <p>Don't Have an Account ?   <Link to={"/auth/signup"}><span className='text-Secondary-900'>Sign Up</span></Link> </p>
+                            {errorMsg}
+                            <p >Don't Have an Account ?   <Link to={"/auth/signup"}><span className='text-Secondary-900'>Sign Up</span></Link> </p>
 
                         </Form>
 

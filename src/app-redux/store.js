@@ -8,7 +8,9 @@ export default configureStore({
     reducer: {
         user: userReducer,
         message: messageSlice,
-        users: usersReducer
+        users: usersReducer,
+
     }
 })
+
 

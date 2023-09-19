@@ -3,11 +3,18 @@ import { useEffect, useState } from 'react'
 import SignIn from './component/Sign/SignIn'
 import SignUp from './component/Sign/SignUp'
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, } from 'react-router-dom'
 import Room from './component/chatRoom/Room'
 import Users from './component/users/Users'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Home from './component/Home'
+import { Switch } from '@mui/material'
+import { SwitchAccessShortcutAddOutlined } from '@mui/icons-material'
+import { socket } from "./socket.io/socket"
+import { disconnect, connectSocket } from './socket.io/ConnectionManger'
+import { updateUsersOnline } from './app-redux/features/users/usersSlice'
+import toast, { Toaster } from 'react-hot-toast';
+import { connect } from 'formik'
 
 const ToogleDarkMode = ({ theme, setTheme }) => {
 
@@ -31,6 +38,10 @@ const ToogleDarkMode = ({ theme, setTheme }) => {
 
 
 function App() {
+  const dispatch = useDispatch();
+
+  const user = useSelector((store) => store.user.user);
+  const usersOnline = useSelector(store => store.users.usersOnline);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   useEffect(() => {
@@ -42,14 +53,52 @@ function App() {
     } else {
       html.classList.remove("dark");
       body.classList.remove("dark");
-
     }
   }, [theme])
 
-  const user = useSelector((store) => store.user.user)
+
+
+
+  useEffect(() => {
+    if (user) {
+      const { token, userId, name } = user;
+      if (token) {
+        socket.emit("online", name);
+      }
+    }
+
+    socket.on("usersOnline",
+      (usersOnline) => {
+        dispatch(updateUsersOnline(usersOnline));
+      }
+    );
+    return (() => socket.disconnect());
+  }, [])
+
+
+  const handleOnline = () => {
+    if (user) {
+      const { token, userId, name } = user
+      socket.emit("online", name);
+    }
+
+  }
+
+  console.log("usersOnline at app", usersOnline);
+
+
   return (
     <BrowserRouter>
-      <ToogleDarkMode theme={theme} setTheme={setTheme} />
+      {/* <ToogleDarkMode theme={theme} setTheme={setTheme} /> */}
+      <div>
+        <button onClick={handleOnline}>be online</button>
+      </div>
+      <div>
+        {
+          usersOnline.map((user) => <h1 className='bg-red-500'>{user.userId}</h1>)
+        }
+      </div>
+      <Toaster />
       <Routes>
         <Route path='/'>
           <Route index element={<Home />} />
@@ -62,7 +111,7 @@ function App() {
           <Route path="*" element={<div>Route not found</div>} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
 
   )
 }
