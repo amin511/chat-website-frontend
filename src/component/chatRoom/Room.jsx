@@ -49,8 +49,9 @@ const Room = () => {
         socket.emit('joinRoom', roomName);
         return () => {
             socket.emit('leaveRoom', roomName);
+            socket.disconnect();
         };
-    }, [userRoomId]); // Empty dependency array ensures this runs only once
+    }, []); // Empty dependency array ensures this runs only once
 
     // add message by create it and emit it to the socket server 
     const addMess = async () => {
@@ -75,7 +76,8 @@ const Room = () => {
 
         }
         )
-    }, [])
+        return () => socket.disconnect();
+    }, []);
 
 
     useEffect(() => {
