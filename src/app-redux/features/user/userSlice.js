@@ -49,6 +49,7 @@ const userSlice = createSlice({
         },
         logOut: (state) => {
             state.userInformation = null
+            state.user = null;
             removeUserFromLocalStorage();
         },
         addUsersOnline: (state, { payload }) => {

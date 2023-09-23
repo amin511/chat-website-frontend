@@ -19,7 +19,9 @@ or utilities layers will only be included in your compiled CSS if those styles a
     src: url("./assets/fonts/Georama-Bold.ttf");
 } */
 @layer base{
- 
+    body {
+        user-select: none;
+    }
 }
 @layer components{
     .btn-primary{

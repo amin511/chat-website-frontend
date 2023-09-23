@@ -49,10 +49,16 @@ const Room = () => {
         socket.emit('joinRoom', roomName);
         return () => {
             socket.emit('leaveRoom', roomName);
-            socket.disconnect();
         };
-    }, []); // Empty dependency array ensures this runs only once
-
+    }, [userRoomId]); // Empty dependency array ensures this runs only once
+    useEffect(() => {
+        socket.on("messageReceived", (data) => {
+            console.log(data, "message received");
+            dispatch(addMessage(data));
+        }
+        )
+        return () => socket.off("messageReceived");
+    }, []);
     // add message by create it and emit it to the socket server 
     const addMess = async () => {
         const { value } = sendMessageRef.current;
@@ -69,15 +75,7 @@ const Room = () => {
 
     }
     // listen for new messages from the socket 
-    useEffect(() => {
-        socket.on("messageReceived", (data) => {
-            console.log(data, "message received");
-            dispatch(addMessage(data));
 
-        }
-        )
-        return () => socket.disconnect();
-    }, []);
 
 
     useEffect(() => {

@@ -1,8 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 
 import React from 'react'
-import { BrowserRouter, Route, Routes, } from 'react-router-dom'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Home = lazy(() => import("./component/Home"))
@@ -12,7 +11,7 @@ import { socket } from "./socket.io/socket"
 import { disconnect, connectSocket } from './socket.io/ConnectionManger'
 import { updateUsersOnline } from './app-redux/features/users/usersSlice'
 import toast, { Toaster } from 'react-hot-toast';
-import { connect } from 'formik'
+
 //
 
 import ToogleDarkMode from './component/ToogleDarkMode'
@@ -44,6 +43,7 @@ function App() {
 
 
   useEffect(() => {
+
     if (user) {
       const { token, userId, name } = user;
       if (token) {
@@ -74,14 +74,6 @@ function App() {
   return (
     <BrowserRouter>
       {/* <ToogleDarkMode theme={theme} setTheme={setTheme} /> */}
-      <div>
-        <button onClick={handleOnline}>be online</button>
-      </div>
-      <div>
-        {
-          usersOnline.map((user) => <h1 className='bg-red-500'>{user.userId}</h1>)
-        }
-      </div>
       <Toaster />
       <Routes>
         <Route path='/'>
@@ -89,11 +81,15 @@ function App() {
             <Suspense>
               <Home />
             </Suspense>} />
-          <Route path='/*' element={<PublicRoutes />} />
+
+
+          <Route element={<PrivateRoute />} />
+          <Route path='auth/*' element={<PublicRoutes />} />
           <Route path='/*' element={<PrivateRoute />} />
           <Route path="/*" element={<div>Route not found</div>} />
         </Route>
       </Routes>
+
     </BrowserRouter>
 
   )

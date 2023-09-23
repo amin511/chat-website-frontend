@@ -35,18 +35,12 @@ import Page3 from './signUpMultipage/Page3';
 
 export default function SignUp() {
     const [stepsSingUp, setStepsSignUp] = useState(0);
-
+    const [userImage, setUserImage] = useState("");
     const { user, errorMsg, isLoading } = useSelector((store) => store.user)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const notify = () => {
-        return (toast('sign up '))
-
-    }
-
     React.useEffect(() => {
-
         if (user) {
             const { token } = user
             if (token) {
@@ -56,22 +50,7 @@ export default function SignUp() {
             }
         }
     });
-    const [userImage, setUserImage] = useState('');
-    console.log(userImage, "userImage");
-    const handleSubmit = async (event) => {
-        try {
-            dispatch(register(data));
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-    if (isLoading) {
-        return (<div className='w-10 h-10 bg-blue-600 mx-auto mt-10 animate-bounce'>
-
-        </div>)
-    }
+    
 
     switch (stepsSingUp) {
         case 2:

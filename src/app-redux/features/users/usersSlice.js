@@ -47,6 +47,11 @@ const usersSlice = createSlice({
             console.log(payload, "usersONline at user slice")
             state.usersOnline = payload
             console.log(state.usersOnline, "stae.usersONlie")
+        },
+        filterUsersOnline: (state) => {
+            const usersOnlineIds = state.usersOnline.map((user) => user.userId);
+            console.log(usersOnlineIds, "usersOnline at user slice");
+            state.usersSearch = state.users.filter((user) => usersOnlineIds.includes(user.name));
         }
     },
     extraReducers: (builder) => {
@@ -91,5 +96,5 @@ export const selectAllUsers = (store) => {
     return store.users.users
 }
 
-export const { searchUsers, updateUsersOnline } = usersSlice.actions;
+export const { searchUsers, updateUsersOnline, filterUsersOnline } = usersSlice.actions;
 export { getAllUsers }  // function for dispatching 

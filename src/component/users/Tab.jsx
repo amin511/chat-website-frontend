@@ -4,7 +4,8 @@ import { UserIcon } from '../../IconsSvg'
 import userImage from "../../../public/images/User pic.svg"
 import { useDispatch, useSelector } from 'react-redux'
 import { ENDPOINTS } from '../../utils/axios'
-import { searchUsers } from '../../app-redux/features/users/usersSlice'
+import { filterUsersOnline, searchUsers } from '../../app-redux/features/users/usersSlice'
+import { ContactEmergency, OnlinePrediction } from '@mui/icons-material'
 const Tab = () => {
 
     const { userImage, name } = useSelector((store) => store.user.user);
@@ -16,12 +17,7 @@ const Tab = () => {
         },
         {
             id: 2,
-            title: "friends"
-        }
-        ,
-        {
-            id: 3,
-            title: "requests"
+            title: "Onlines"
         }
 
     ]
@@ -55,9 +51,18 @@ const Tab = () => {
                             <button
                                 key={element.id}
                                 className={
-                                    `px-4 py-1 text-[16px] font-Georgia font-[500] rounded-xl  ${element.title === TabSelected.title && 'filter  text-Tertiary-500  text-[18px] font-[700] font-Georgia '}`
+                                    `px-4 py-1 text-[20px] font-Georgia font-[500] rounded-xl  ${element.title === TabSelected.title && 'filter  text-Tertiary-500  text-[18px] font-[700] font-Georgia '}`
                                 }
-                                onClick={() => setTabSelected({ title: element.title })}>
+                                onClick={() => {
+                                    setTabSelected({ title: element.title })
+                                    if (element.title === "Onlines") {
+
+                                        dispatch(filterUsersOnline());
+                                    }
+                                    if (element.title === "All") {
+                                        dispatch(searchUsers(""))
+                                    }
+                                }}>
                                 {element.title}
                             </button>
                         )

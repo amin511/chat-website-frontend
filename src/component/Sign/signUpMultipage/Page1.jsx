@@ -31,8 +31,9 @@ const Page1 = (props) => {
                 initialValues={{ firstName: "", lastName: "", email: "" }}
                 onSubmit={(values) => {
                     const { firstName, lastName, email } = values
-                    props.setStepsSignUp((prev) => prev + 1);
                     dispatch(addInfoPage1({ name: `${firstName} ${lastName}`, email }));
+                    props.setStepsSignUp(2);
+
                 }}
             >
                 {(props) =>

@@ -16,7 +16,7 @@ const Home = () => {
     let token = "";
     if (user) {
         const { token: newToken } = user;
-        const token = newToken;
+        token = newToken;
     }
     return (
         <main className="flex mt-10  flex-col gap-7 max-w-lg w-[80%] mx-auto items-center">
