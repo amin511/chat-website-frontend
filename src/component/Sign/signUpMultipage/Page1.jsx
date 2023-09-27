@@ -12,7 +12,7 @@ import Header from '../../Header'
 import { useNavigate } from 'react-router-dom'
 const Page1 = (props) => {
     const dispatch = useDispatch();
-    const navigare = useNavigate();
+    const navigate = useNavigate();
     const { firstName, lastName, email } = useSelector((store) => store.user.userInformation);
     return (
         <main className=' relative flex flex-col gap-4 w-[80%] max-w-lg mx-auto mt-10'>
