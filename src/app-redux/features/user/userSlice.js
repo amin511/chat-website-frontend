@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 const initialState = {
     isLoading: false,
     user: getUserFromLocalStorage(),
-    userInformation: "",
+    userInformation: { firstName: "", lastName: "", email: "" },
     errorMsg: ""
 }
 

@@ -1,6 +1,7 @@
 
 
 import { Formik, Form } from 'formik'
+import * as yup from "yup";
 import React from 'react'
 import FiledCustom from '../../FiledCustom'
 import { ArrowBack } from '@mui/icons-material'
@@ -11,7 +12,8 @@ import Header from '../../Header'
 import { useNavigate } from 'react-router-dom'
 const Page1 = (props) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigare = useNavigate();
+    const { firstName, lastName, email } = useSelector((store) => store.user.userInformation);
     return (
         <main className=' relative flex flex-col gap-4 w-[80%] max-w-lg mx-auto mt-10'>
             <header className='flex '>
@@ -28,13 +30,18 @@ const Page1 = (props) => {
             </div> */}
             <Formik
 
-                initialValues={{ firstName: "", lastName: "", email: "" }}
+                initialValues={{ firstName: firstName, lastName: lastName, email: email }}
                 onSubmit={(values) => {
-                    const { firstName, lastName, email } = values
-                    dispatch(addInfoPage1({ name: `${firstName} ${lastName}`, email }));
+
+                    dispatch(addInfoPage1(values));
                     props.setStepsSignUp(2);
 
                 }}
+                validationSchema={yup.object({
+                    firstName: yup.string().required("firstName is required"),
+                    lastName: yup.string().required("lastName is required"),
+                    email: yup.string().email("invalid email").required("email is required")
+                })}
             >
                 {(props) =>
                     <Form className='flex flex-col gap-6'>
@@ -49,7 +56,7 @@ const Page1 = (props) => {
                     </Form>
                 }
             </Formik>
-        </main>
+        </main >
     )
 }
 

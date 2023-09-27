@@ -11,9 +11,19 @@ import Logo from "../../../../public/images/Logo.svg"
 import { useDispatch } from 'react-redux'
 import { addInfoPage2 } from '../../../app-redux/features/user/userSlice'
 import Header from '../../Header'
+import * as yup from "yup"
+
 const Page2 = ({ setStepsSignUp, userImage, setUserImage }) => {
 
     const dispatch = useDispatch()
+
+    const signUpPage1ValidationSchema = yup.object({
+        password: yup.string().required('Password is required').min(6, 'Must be 7 characters or more'),
+        confirmPassword: yup.string().
+            required("Please re-type your password").
+            oneOf([yup.ref("password")], "Password does not match"),
+    });
+
     return (
 
         <main className='mt-10 flex flex-col max-w-lg gap-7 w-[80%] mx-auto  '>
@@ -34,11 +44,13 @@ const Page2 = ({ setStepsSignUp, userImage, setUserImage }) => {
                     dispatch(addInfoPage2({ password, userImage: URL.createObjectURL(userImage) }));
                     setStepsSignUp(3)
                 }}
+                validationSchema={signUpPage1ValidationSchema}
+
             >
                 {(props) =>
                     <Form className='flex flex-col gap-6'>
                         <FiledCustom type="password" name="password" placeholder="Your Password" labelText="Password" />
-                        <FiledCustom type="password" name="passwordConfirm" placeholder="Confirm Your Password" labelText="Password Confirm" />
+                        <FiledCustom type="password" name="confirmPassword" placeholder="Confirm Your Password" labelText="Password Confirm" />
                         <label htmlFor='userImage' className='mx-auto'>
                             <img src={uploadPicture} />
                         </label>

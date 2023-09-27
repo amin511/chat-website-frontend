@@ -9,12 +9,12 @@ const PrivateRoute = () => {
         <Routes>
 
             <Route path="Room/:userRoomId/" element={
-                <Suspense fallback={<>Loading app..</>}>
+                <Suspense >
                     <Room />
                 </Suspense>
             } />
             <Route path='users/' element={
-                <Suspense fallback={<>Loading app..</>}>
+                <Suspense >
                     <Users />
                 </Suspense>}
             />

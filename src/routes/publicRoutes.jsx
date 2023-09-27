@@ -7,13 +7,13 @@ const PublicRoutes = () => {
     return (
         <Routes>
             <Route path="signin" element={
-                <Suspense fallback={<>... loading</>}>
+                <Suspense >
                     <SignIn />
                 </Suspense>
             } />
 
             <Route path="signup/" element={
-                <Suspense fallback={<>... loading</>}>
+                <Suspense >
                     <SignUp />
                 </Suspense>} />
 

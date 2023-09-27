@@ -19,7 +19,7 @@ const Page3 = (props) => {
         data.append('userImage', props.userImage);
         data.append('email', userInformation.email);
         data.append('password', userInformation.password);
-        data.append('name', userInformation.name);
+        data.append('name', `${userInformation.firstName} ${userInformation.lastName}`);
 
         try {
             await dispatch(register(data));

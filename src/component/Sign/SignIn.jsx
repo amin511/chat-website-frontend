@@ -60,7 +60,8 @@ export default function SignIn() {
                             <section className='space-y-6'>
                                 <FiledCustom
                                     name="email"
-                                    placeHolder="Your address email"
+                                    type="email"
+                                    placeholder="Your address email"
                                     labelText="Email Address"
                                 />
 

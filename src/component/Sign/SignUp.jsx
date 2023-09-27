@@ -28,6 +28,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Page1 from './signUpMultipage/Page1';
 import Page2 from './signUpMultipage/Page2';
 import Page3 from './signUpMultipage/Page3';
+import Header from '../Header';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -50,7 +51,18 @@ export default function SignUp() {
             }
         }
     });
-    
+    if (isLoading) {
+        return (
+            <div className='w-[80%] mx-auto mt-20 ' >
+                <Header />
+
+                <div className='mx-auto w-20 h-20 mt-10 bg-primary-500 rounded-full animate-bounce'></div>
+                <h1 className='mt-10 animate-pulse font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto '>
+                    Loading...
+                </h1>
+
+            </div>)
+    }
 
     switch (stepsSingUp) {
         case 2:
