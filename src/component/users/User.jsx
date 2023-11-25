@@ -19,15 +19,16 @@ const User = ({ name, _id, userImage }) => {
 
     return (
         <Link to={`/room/${_id}`}>
-            <div className='flex items-center hover:bg-slate-200 transition duration-200 rounded-lg w-[100%] gap-3   p-2  '>
-                <div className={`${isOnline ? "bg-green-600 " : "bg-red-600"} w-4 h-4 rounded-full`}></div>
-                <img className='w-12 h-12 rounded-full object-cover border border-2 border-gray-500' src={`${ENDPOINTS}/${userImage}` || userIcon} />
+            <div className='relative flex items-center hover:bg-slate-200 transition duration-200 rounded-lg w-[100%] gap-3   p-2  '>
+                <div className={`${isOnline ? "bg-green-600 " : "bg-red-600"} w-3 h-3 rounded-full absolute bottom-3 border-white border-2`}></div>
+                <img className='w-12 h-12 rounded-full object-cover  border border-2 border-primary-500' src={`${userImage}` || userIcon} >
+                </img>
                 <div>
-                    <h1 className=' text-neutral-900 font-[600] font-Georgia'>{name}</h1>
-                    <p className='font-AnekLatin font-300'>last message</p>
+                    <h1 className=' text-neutral-900 font-[500]  font-Georgia'>{name}</h1>
+                    <p className='font-AnekLatin text-xs'>Last message</p>
                 </div>
             </div>
-        </Link>
+        </Link >
     )
 }
 

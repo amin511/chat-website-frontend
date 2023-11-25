@@ -29,6 +29,7 @@ import Page1 from './signUpMultipage/Page1';
 import Page2 from './signUpMultipage/Page2';
 import Page3 from './signUpMultipage/Page3';
 import Header from '../Header';
+import Layout from './layout';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -66,7 +67,11 @@ export default function SignUp() {
 
     switch (stepsSingUp) {
         case 2:
-            return (<Page2 userImage={userImage} setUserImage={setUserImage} setStepsSignUp={setStepsSignUp} />)
+            return (
+
+                <Page2 userImage={userImage} setUserImage={setUserImage} setStepsSignUp={setStepsSignUp} />
+
+            )
 
         case 3:
             return (<Page3 userImage={userImage} setStepsSignUp={setStepsSignUp} />)

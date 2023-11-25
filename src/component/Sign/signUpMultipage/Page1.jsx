@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addInfoPage1 } from '../../../app-redux/features/user/userSlice'
 import Header from '../../Header'
 import { useNavigate } from 'react-router-dom'
+import Layout from '../layout';
 const Page1 = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { firstName, lastName, email } = useSelector((store) => store.user.userInformation);
     return (
-        <main className=' relative flex flex-col gap-4 w-[80%] max-w-lg mx-auto mt-10'>
+        <Layout>
             <header className='flex '>
                 <ArrowBack className='' onClick={() => navigate("../../")} />
                 <div className='mx-auto' >
@@ -56,7 +57,7 @@ const Page1 = (props) => {
                     </Form>
                 }
             </Formik>
-        </main >
+        </Layout>
     )
 }
 

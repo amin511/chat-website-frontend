@@ -17,7 +17,7 @@ const Tab = () => {
         },
         {
             id: 2,
-            title: "Onlines"
+            title: "Online"
         }
 
     ]
@@ -29,7 +29,7 @@ const Tab = () => {
                 <header className=' flex mx-auto max-w-lg items-center justify-between'>
                     <div className='flex items-center gap-4'>
                         {
-                            userImage ? <img className=' border-primary-300 w-16 h-16 rounded-full object-cover' src={`${ENDPOINTS}/${userImage}`} />
+                            userImage ? <img className=' border-primary-300 w-16 h-16 rounded-full object-cover' src={`${userImage}`} />
                                 :
                                 <UserIcon className={"border border-primary-300 rounded-full w-16 h-16"} />
                         }
@@ -55,7 +55,7 @@ const Tab = () => {
                                 }
                                 onClick={() => {
                                     setTabSelected({ title: element.title })
-                                    if (element.title === "Onlines") {
+                                    if (element.title === "Online") {
 
                                         dispatch(filterUsersOnline());
                                     }

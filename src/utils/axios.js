@@ -1,8 +1,13 @@
 import axios from "axios";
 import { getUserFromLocalStorage } from "./localStorage";
 
-// export const ENDPOINTS = "http://localhost:3001"
-export const ENDPOINTS = 'https://chat-website-xxiq.onrender.com'
+// export const ENDPOINTS = process.env.ENDPOINTS;
+export const ENDPOINTS = import.meta.env.MODE === 'development'
+    ?
+    import.meta.env.VITE_DEV_ENDPOINTS
+    :
+    import.meta.env.VITE_PROD_ENDPOINTS
+
 
 const costumFetch = axios.create({
     baseURL: `${ENDPOINTS}/api/v1`

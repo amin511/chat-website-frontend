@@ -1,28 +1,27 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import userImage from "../../../public/vite.svg"
-import Message from './Message'
+import Message from '../component/chatRoom/Message'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { createMessage, getMessages } from '../../app-redux/features/messages/messageSlice'
+import { createMessage, getMessages } from '../app-redux/features/messages/messageSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { messageCountSelector } from '../../app-redux/features/user/userSlice'
-import { addMessage } from '../../app-redux/features/messages/messageSlice'
+import { messageCountSelector } from '../app-redux/features/user/userSlice'
+import { addMessage } from '../app-redux/features/messages/messageSlice'
 
 import { io } from 'socket.io-client';
-import costumFetch from '../../utils/axios'
-import Users from '../users/Users'
+import costumFetch from '../utils/axios'
+import Users from './Users'
 import { TextField, TextareaAutosize } from '@mui/material'
-import { convertToBase64 } from '../../utils/convertTobase64'
+import { convertToBase64 } from '../utils/convertTobase64'
 
 import Div100vh from 'react-div-100vh'
 import Split from 'react-split'
 import { Send } from '@mui/icons-material'
 
-import { ENDPOINTS } from '../../utils/axios'
+import { ENDPOINTS } from '../utils/axios'
 // socket 
-import { socket } from "../../socket.io/socket";
+import { socket } from "../socket.io/socket";
 
-import { BackIcon, SendIcon, SettingIcon } from '../../IconsSvg'
+import { BackIcon, SendIcon, SettingIcon } from '../IconsSvg'
 
 
 const Room = () => {
@@ -149,7 +148,7 @@ const Room = () => {
                     {userRoom ?
                         <header className='relative bg-white rounded-[32px] p-3 mt-[16px]  z-50 w-[100%] gap-3 flex items-center'>
                             <button onClick={() => navigate("../../users")}><BackIcon /></button>
-                            <img className='w-12 h-12 rounded-full border border-2 border-primary-300 object-cover' src={`${ENDPOINTS}/${userRoom.userImage}`} />
+                            <img className='w-12 h-12 rounded-full border border-2 border-primary-500 object-cover' src={`${userRoom.userImage}`} />
                             <h1 className='userName text-[20px]'>{userRoom.name}</h1>
                             <SettingIcon className={"absolute right-3 h-8 w-8"} />
                         </header>

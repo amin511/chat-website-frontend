@@ -12,6 +12,7 @@ import HomeIlustraion from "../../../public/images/HomeIlustation.svg"
 import Logo from "../../../public/images/Logo.svg"
 import FiledCustom from '../FiledCustom';
 import Header from '../Header';
+import Layout from './layout';
 
 export default function SignIn() {
     const { user, errorMsg, isLoading } = useSelector((store) => store.user)
@@ -43,7 +44,7 @@ export default function SignIn() {
     })
 
     return (
-        <main className=" mt-10 flex flex-col gap-10 max-w-lg w-[80%] mx-auto items-center dark:gradient-500">
+        <Layout>
             <Header title={"Start chat with your freinds"} />
             <Formik
                 initialValues={{ email: "", password: "" }}
@@ -55,9 +56,9 @@ export default function SignIn() {
                 {
                     (props) =>
                         <Form
-                            className="flex flex-col gap-10 w-[70%] mx-auto" >
+                            className="flex flex-col gap-10 w-full mx-auto" >
 
-                            <section className='space-y-6'>
+                            <section className='space-y-3'>
                                 <FiledCustom
                                     name="email"
                                     type="email"
@@ -82,8 +83,7 @@ export default function SignIn() {
 
                 }
             </Formik>
-
-        </main>
+        </Layout>
     )
 
 

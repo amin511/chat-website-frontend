@@ -2,12 +2,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import Logout from './Sign/Logout';
+import Logout from '../component/Sign/Logout';
 
 // images 
 import HomeIlustraion from "../../public/images/HomeIlustation.svg"
 import Logo from "../../public/images/Logo.svg"
-import Header from './Header';
+import Header from '../component/Header';
+import Div100vh from 'react-div-100vh';
+import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
 // images
 
 
@@ -19,9 +21,12 @@ const Home = () => {
         token = newToken;
     }
     return (
-        <main className="flex mt-10  flex-col gap-7 max-w-lg w-[80%] mx-auto items-center">
+        <main className="flex mt-5 flex-col  max-w-lg w-[80%] mx-auto items-center">
             <Header title={"Start chat with your freinds"} />
-            <img src={HomeIlustraion} className='w-[300px] ' />
+            <LazyLoadImage
+
+                width={"280px"} height={"300px"} src={HomeIlustraion}
+            />
             <p className='px-6 text-lg text-neutral-400 font-[300] text-center font-AnekLatin'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in luctus elit. Maecenas non risus sapien. Phasellus ultrices libero vel erat laoreet, nec aliquam ex scelerisque.
             </p>
@@ -33,7 +38,7 @@ const Home = () => {
                         <Logout />
                     </div>
                     :
-                    <div className='flex flex-col items-center gap-2 '>
+                    <div className='flex gap-2 flex-col items-center  '>
                         <Link to={"/auth/signup"}><button className='btn-submit'>Sign Up</button>
                         </Link>
                         <Link to={"/auth/signin"}><button className='btn-submit'>Sign In</button></Link>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import User from './User'
-import costumFetch from '../../utils/axios';
+import User from '../component/users/User'
+import costumFetch from '../utils/axios';
 import axios from 'axios';
-import Logout from '../Sign/Logout';
+import Logout from '../component/Sign/Logout';
 import { useDispatch, useSelector } from 'react-redux';
-import UserConnected from './UserConnected';
-import { getAllUsers, selectAllUsers } from '../../app-redux/features/users/usersSlice';
-import Tab from './Tab';
+import UserConnected from '../component/users/UserConnected';
+import { getAllUsers, selectAllUsers } from '../app-redux/features/users/usersSlice';
+import Tab from '../component/users/Tab';
 const Users = React.memo(() => {
 
     // hooks util
@@ -40,10 +40,11 @@ const Users = React.memo(() => {
                                     return (<User key={user._id} {...user} />)
                                 })
                             }
+                            <Logout />
                         </div>
                 }
                 <footer>
-                    <Logout />
+
                 </footer>
             </section>
         </div>

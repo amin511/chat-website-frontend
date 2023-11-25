@@ -4,7 +4,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Home = lazy(() => import("./component/Home"))
+const Home = lazy(() => import("./pages/Home"))
 
 // socket import 
 import { socket } from "./socket.io/socket"
@@ -69,7 +69,7 @@ function App() {
   }
 
   console.log("usersOnline at app", usersOnline);
-
+  console.log(import.meta.env);
 
   return (
     <BrowserRouter>
@@ -81,8 +81,6 @@ function App() {
             <Suspense>
               <Home />
             </Suspense>} />
-
-
           <Route element={<PrivateRoute />} />
           <Route path='auth/*' element={<PublicRoutes />} />
           <Route path='/*' element={<PrivateRoute />} />
