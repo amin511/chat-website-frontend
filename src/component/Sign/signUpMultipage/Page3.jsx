@@ -3,7 +3,7 @@ import React from 'react'
 import { Form } from 'react-router-dom'
 import FiledCustom from '../../FiledCustom'
 import { Link } from 'react-router-dom'
-import userImage from "/src/assets/images/User pic.svg"
+import userImage from "/src/assets/images/UserPic.svg"
 import { ArrowBack } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../../../app-redux/features/user/userSlice'
