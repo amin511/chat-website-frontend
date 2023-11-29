@@ -7,9 +7,7 @@
 /* Any custom styles you add to the base,
 components,
 or utilities layers will only be included in your compiled CSS if those styles are actually used in your HTML. */
-@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 /* @font-face {
     font-family: "AnekLatin";
     src: url("./assets/fonts/AnekLatin-Thin.ttf");
@@ -28,8 +26,7 @@ or utilities layers will only be included in your compiled CSS if those styles a
         @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
     }
     .btn-submit{
-            @apply bg-primary-500 rounded-xl w-[150px] h-[50px] px-6  text-[18px] font-Georgia font-[] mx-auto text-primary-100 border-2 border-Secondary-500
-
+            @apply font-[600] bg-primary-500 rounded-xl w-[150px] h-[50px] px-6  text-[18px] font-Georgia font-[] mx-auto text-primary-100 border-2 border-Secondary-500
     }
     .header-1{
         @apply text-4xl font-Georgia font-bold text-[24px] text-primary-700 max-w-max mx-auto
@@ -38,6 +35,9 @@ or utilities layers will only be included in your compiled CSS if those styles a
 
 
 @layer utilities{
+    @import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500&display=swap');
+    
+    @import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
     /* for adding a own costum calsses of css pure */
 /* This can be useful when there’s a CSS feature you’d like to use in your project that Tailwind doesn’t include utilities for out of the box. */
 .gradient-100{

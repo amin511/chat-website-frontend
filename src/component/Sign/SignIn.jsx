@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 // import images
-import HomeIlustraion from "../../../public/images/HomeIlustation.svg"
-import Logo from "../../../public/images/Logo.svg"
 import FiledCustom from '../FiledCustom';
 import Header from '../Header';
 import Layout from './layout';

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { SettingIcon } from '../../IconsSvg'
 import { UserIcon } from '../../IconsSvg'
-import userImage from "../../../public/images/User pic.svg"
 import { useDispatch, useSelector } from 'react-redux'
 import { ENDPOINTS } from '../../utils/axios'
 import { filterUsersOnline, searchUsers } from '../../app-redux/features/users/usersSlice'

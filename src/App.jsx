@@ -47,15 +47,20 @@ function App() {
     if (user) {
       const { token, userId, name } = user;
       if (token) {
-        socket.emit("online", name);
+        setTimeout(() => {
+          socket.emit("online", name);
+        }, 1000)
+
       }
     }
 
-    socket.on("usersOnline",
-      (usersOnline) => {
-        dispatch(updateUsersOnline(usersOnline));
-      }
-    );
+    setTimeout(() => {
+      socket.on("usersOnline",
+        (usersOnline) => {
+          dispatch(updateUsersOnline(usersOnline));
+        })
+    }, 1000);
+
     return (() => socket.disconnect());
   }, [])
 

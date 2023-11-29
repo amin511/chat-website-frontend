@@ -6,8 +6,7 @@ import FiledCustom from '../../FiledCustom'
 import { ArrowBack } from '@mui/icons-material'
 import SignUp from '../SignUp'
 
-import uploadPicture from "../../../../public/images/UserUploadPics.svg"
-import Logo from "../../../../public/images/Logo.svg"
+import uploadPicture from "/src/assets/images/UserUploadPics.svg"
 import { useDispatch } from 'react-redux'
 import { addInfoPage2 } from '../../../app-redux/features/user/userSlice'
 import Header from '../../Header'

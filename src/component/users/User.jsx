@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ENDPOINTS } from '../../utils/axios'
-import userIcon from "../../../public/images/User pic.svg"
 import { BookOnlineOutlined, OfflineBolt, OnlinePrediction, OnlinePredictionTwoTone } from '@mui/icons-material'
 const User = ({ name, _id, userImage }) => {
     const [isOnline, setIsOnline] = useState(false);

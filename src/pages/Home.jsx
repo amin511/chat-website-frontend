@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import Logout from '../component/Sign/Logout';
 
 // images 
-import HomeIlustraion from "../../public/images/HomeIlustation.svg"
-import Logo from "../../public/images/Logo.svg"
+import HomeIlustraion from "/src/assets/images/HomeIlustation.svg"
 import Header from '../component/Header';
 import Div100vh from 'react-div-100vh';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
@@ -21,7 +20,7 @@ const Home = () => {
         token = newToken;
     }
     return (
-        <main className="flex mt-5 flex-col  max-w-lg w-[80%] mx-auto items-center">
+        <main className="flex mt-5 flex-col gap-4 max-w-lg w-[80%] mx-auto items-center">
             <Header title={"Start chat with your freinds"} />
             <LazyLoadImage
 

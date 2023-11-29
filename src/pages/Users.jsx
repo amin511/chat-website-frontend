@@ -29,9 +29,33 @@ const Users = React.memo(() => {
 
                 {
                     isLoading ?
-                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
-                            <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
-                            <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                        <header className='p-3  flex flex-col gap-1 w-full max-w-[800px] mx-auto  '>
+                            <div className='flex gap-3 items-center'>
+                                <div className='w-12 h-12 rounded-full object-cover bg-slate-300  border border-2 border-primary-500 animate-pulses animate-pulse'></div>
+                                <div className='space-y-1'>
+                                    <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                                    <h1 className='bg-slate-300 h-2 w-20 rounded-lg animate-pulse'></h1>
+                                </div>
+                            </div>
+                            <div className='flex gap-3 items-center'>
+                                <div className='w-12 h-12 rounded-full object-cover bg-slate-300  border border-2 border-primary-500 animate-pulses animate-pulse'></div>
+                                <div className='space-y-1'>
+                                    <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                                    <h1 className='bg-slate-300 h-2 w-20 rounded-lg animate-pulse'></h1>
+                                </div>
+                            </div>  <div className='flex gap-3 items-center'>
+                                <div className='w-12 h-12 rounded-full object-cover bg-slate-300  border border-2 border-primary-500 animate-pulses animate-pulse'></div>
+                                <div className='space-y-1'>
+                                    <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                                    <h1 className='bg-slate-300 h-2 w-20 rounded-lg animate-pulse'></h1>
+                                </div>
+                            </div>  <div className='flex gap-3 items-center'>
+                                <div className='w-12 h-12 rounded-full object-cover bg-slate-300  border border-2 border-primary-500 animate-pulses animate-pulse'></div>
+                                <div className='space-y-1'>
+                                    <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                                    <h1 className='bg-slate-300 h-2 w-20 rounded-lg animate-pulse'></h1>
+                                </div>
+                            </div>
                         </header>
                         :
                         <div className='p-3 flex flex-col gap-1 w-full max-w-[800px] mx-auto  '>
