@@ -49,17 +49,15 @@ function App() {
       if (token) {
         setTimeout(() => {
           socket.emit("online", name);
-        }, 1000)
-
+        }, 2000)
       }
     }
 
-    setTimeout(() => {
-      socket.on("usersOnline",
-        (usersOnline) => {
-          dispatch(updateUsersOnline(usersOnline));
-        })
-    }, 1000);
+
+    socket.on("usersOnline",
+      (usersOnline) => {
+        dispatch(updateUsersOnline(usersOnline));
+      })
 
     return (() => socket.disconnect());
   }, [])
@@ -73,8 +71,7 @@ function App() {
 
   }
 
-  console.log("usersOnline at app", usersOnline);
-  console.log(import.meta.env);
+
 
   return (
     <BrowserRouter>

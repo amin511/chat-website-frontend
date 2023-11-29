@@ -153,9 +153,11 @@ const Room = () => {
                             <SettingIcon className={"absolute right-3 h-8 w-8"} />
                         </header>
                         :
-                        <header className='w-[100%] gap-3  shadow-md  p-2 flex items-center'>
-                            <div className='bg-slate-400 h-10 w-10 rounded-full animate-pulses animate-pulse'></div>
-                            <h1 className='bg-slate-300 h-3 w-32 rounded-lg animate-pulse'></h1>
+                        <header className='relative bg-white rounded-[32px] p-3 mt-[16px]  z-50 w-[100%] gap-3 flex items-center'>
+                            <button onClick={() => navigate("../../users")}><BackIcon /></button>
+                            <div className='w-12  h-12 bg-primary-400 animate animate-pulse rounded-full border border-2 border-primary-500 object-cover' />
+                            <h1 className='rounded-lg w-32 h-4  animate-pulse bg-primary-300  text-[20px]'></h1>
+                            <SettingIcon className={"absolute right-3 h-8 w-8"} />
                         </header>
                     }
 
