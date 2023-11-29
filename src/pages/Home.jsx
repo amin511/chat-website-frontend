@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Logout from '../component/Sign/Logout';
 
 // images 
-import HomeIlustraion from "/src/assets/images/HomeIlustation.svg"
+import HomeIlustraion from "../assets/images/HomeIlustation.svg"
 import Header from '../component/Header';
 import Div100vh from 'react-div-100vh';
 import { LazyLoadComponent, LazyLoadImage } from 'react-lazy-load-image-component';
